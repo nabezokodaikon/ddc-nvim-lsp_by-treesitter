@@ -143,18 +143,19 @@ export class Source extends BaseSource<Params> {
       return Promise.resolve(-1);
     }
 
-    const b = a
+    const b = [...new Set(a)]
       .filter(x => x != ";" && x != "," && x != "")
       .map(x => (x == ":") ? `${x}\\s*` : `${x}`)
       .map(x => (x == ".") ? `\\${x}` : `${x}`)
-      .map(x => `${x}\\w*|`);
-
-    const c = [...new Set(b)]
+      .map(x => (x == "$") ? `\\${x}` : `${x}`)
+      .map(x => (x == "{") ? `\\${x}` : `${x}`)
+      .map(x => (x == "}") ? `\\${x}` : `${x}`)
+      .map(x => `${x}\\w*|`)
       .toString()
       .replace(/,/g, "")
       .slice(0, -1);
 
-    args.sourceOptions.forceCompletionPattern = (c.length > 0) ? `${c}` : "";
+    args.sourceOptions.forceCompletionPattern = (b.length > 0) ? `${b}` : "";
 
     return super.getCompletePosition(args);
   }
