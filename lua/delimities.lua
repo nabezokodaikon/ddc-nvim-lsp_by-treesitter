@@ -14,7 +14,8 @@ function M.get_delimities()
   for _, match, metadata in query:iter_matches(parent_node, 0, start_row, end_row) do
       for id, node in pairs(match) do
           local character_type = query.captures[id]
-          if character_type == 'punctuation.delimiter' then
+          if character_type == 'punctuation.delimiter'
+            or character_type == 'tag.delimiter' then
               local word = vim.treesitter.query.get_node_text(node, bufnr)
               table.insert(tbl, word)
           end
