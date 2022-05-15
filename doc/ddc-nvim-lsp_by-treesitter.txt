@@ -1,0 +1,63 @@
+*ddc-nvim-lsp_by-treesitter.txt	nvim-lsp_by-treesitter completion for ddc.vim
+
+Author: nabezokodaikon <nabezoko.daikon at gmail.com>
+License: MIT license
+
+CONTENTS				*ddc-nvim-lsp_by-treesitter-contents*
+
+Introduction		|ddc-nvim-lsp_by-treesitter-introduction|
+Install			|ddc-nvim-lsp_by-treesitter-install|
+Examples		|ddc-nvim-lsp_by-treesitter-examples|
+Params			|ddc-nvim-lsp_by-treesitter-params|
+
+
+==============================================================================
+INTRODUCTION				*ddc-nvim-lsp_by-treesitter-introduction*
+
+This source collects candidates nvim-lsp with treesitter the cursor, namely
+inside current buffer.
+
+
+==============================================================================
+INSTALL					*ddc-nvim-lsp_by-treesitter-install*
+
+Please install both "ddc.vim" and "denops.vim" and "nvim-treesitter".
+
+https://github.com/Shougo/ddc.vim
+https://github.com/vim-denops/denops.vim
+https://github.com/nvim-treesitter/nvim-treesitter
+
+You must use neovim 0.7.0+ with nvim-lsp and nvim-treesitter configuration.
+
+
+==============================================================================
+EXAMPLES				*ddc-nvim-lsp_by-treesitter-examples*
+>
+>
+	" Use nvim-lsp_by-treesitter source.
+	call ddc#custom#patch_global('sources', ['nvim-lsp_by-treesitter'])
+	
+	" Change source options
+	call ddc#custom#patch_global('sourceOptions', {
+	      \ '_': { 'matchers': ['matcher_head'] },
+	      \ 'nvim-lsp_by-treesitter': {
+	      \   'mark': 'lsp',
+	      \ })
+	      \ })
+	call ddc#custom#patch_global('sourceParams', {
+	      \ 'nvim-lsp_by-treesitter': {'maxSize': 500},
+	      \ })
+<
+
+==============================================================================
+PARAMS					*ddc-nvim-lsp_by-treesitter-params*
+
+			    	*ddc-nvim-lsp_by-treesitter-param-kindLabels*
+kindLabels	(Record<string, string>)
+		Customized labels for kind.
+
+		Default: {}
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:noet:
